@@ -22,6 +22,7 @@ class HouseViewController: UIViewController {
     init(model: House) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
+        title = model.name
     }
     
     //Chapuza de los de Cupertino (relacionada con los nil)
