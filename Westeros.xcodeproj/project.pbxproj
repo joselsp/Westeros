@@ -14,6 +14,7 @@
 		DF42BDDE1F10CB7E00F434F2 /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42BDDD1F10CB7E00F434F2 /* House.swift */; };
 		DF4AC4581F160C9A00534D18 /* HouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4AC4561F160C9A00534D18 /* HouseViewController.swift */; };
 		DF4AC4591F160C9A00534D18 /* HouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4AC4571F160C9A00534D18 /* HouseViewController.xib */; };
+		DF4AC45E1F163D4600534D18 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4AC45D1F163D4600534D18 /* UIKitExtensions.swift */; };
 		DFEB174D1F10DDF70013D490 /* codeIsComing.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEB174B1F10DDF70013D490 /* codeIsComing.png */; };
 		DFEB174E1F10DDF70013D490 /* lannister.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DFEB174C1F10DDF70013D490 /* lannister.jpg */; };
 		DFEB17511F10E4FD0013D490 /* PersonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEB17501F10E4FD0013D490 /* PersonTest.swift */; };
@@ -42,6 +43,7 @@
 		DF42BDDD1F10CB7E00F434F2 /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
 		DF4AC4561F160C9A00534D18 /* HouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseViewController.swift; sourceTree = "<group>"; };
 		DF4AC4571F160C9A00534D18 /* HouseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseViewController.xib; sourceTree = "<group>"; };
+		DF4AC45D1F163D4600534D18 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		DFEB174B1F10DDF70013D490 /* codeIsComing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = codeIsComing.png; sourceTree = "<group>"; };
 		DFEB174C1F10DDF70013D490 /* lannister.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lannister.jpg; sourceTree = "<group>"; };
 		DFEB17501F10E4FD0013D490 /* PersonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTest.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		DF42BDBA1F10B76700F434F2 /* Westeros */ = {
 			isa = PBXGroup;
 			children = (
+				DF4AC45F1F163DBF00534D18 /* Cocoa */,
 				DFEB174F1F10DE0B0013D490 /* Resources */,
 				DF4AC45A1F160CE400534D18 /* Controllers */,
 				DF42BDDF1F10CBF200F434F2 /* Models */,
@@ -124,6 +127,14 @@
 				DF4AC4571F160C9A00534D18 /* HouseViewController.xib */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DF4AC45F1F163DBF00534D18 /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				DF4AC45D1F163D4600534D18 /* UIKitExtensions.swift */,
+			);
+			name = Cocoa;
 			sourceTree = "<group>";
 		};
 		DFEB174F1F10DE0B0013D490 /* Resources */ = {
@@ -245,6 +256,7 @@
 				DF42BDDE1F10CB7E00F434F2 /* House.swift in Sources */,
 				DF42BDBC1F10B76700F434F2 /* AppDelegate.swift in Sources */,
 				DF4AC4581F160C9A00534D18 /* HouseViewController.swift in Sources */,
+				DF4AC45E1F163D4600534D18 /* UIKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
