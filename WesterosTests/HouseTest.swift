@@ -20,7 +20,7 @@ class HouseTest: XCTestCase {
     var starkHouse: House!
     var lannisterHouse: House!
     
-    var roob: Person!
+    var robb: Person!
     var arya: Person!
     var tyrion: Person!
     
@@ -34,10 +34,10 @@ class HouseTest: XCTestCase {
         starkSigil = Sigil(image: starkImage, description: "Direwolf")
         lannisterSigil = Sigil(image: lannisterImage, description: "Rampant Lion")
         
-        starkHouse = House(name: "Stark", sigil: starkSigil, words: "Winter is coming!")
-        lannisterHouse = House(name: "Lannyster", sigil: lannisterSigil, words: "Hear me roar!")
+        starkHouse = House(name: "Stark", sigil: starkSigil, words: "Winter is coming!", url:URL(string:"http://awoiaf.westeros.org/index.php/House_Stark")!)
+        lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Hear me roar!", url:URL(string:"http://awoiaf.westeros.org/index.php/House_Lannister")!)
         
-        roob = Person(name: "Roob", alias: "The young wold", house: starkHouse)
+        robb = Person(name: "Roob", alias: "The young wold", house: starkHouse)
         arya = Person(name: "Arya", house: starkHouse)
         tyrion = Person(name: "Tyrion", alias: "The Imp", house: lannisterHouse)
         
@@ -50,30 +50,30 @@ class HouseTest: XCTestCase {
     }
     
     func testHouseExistence() {
-        let starkSigil = Sigil(image: #imageLiteral(resourceName: "codeIsComing.png"), description: "Direwolf")
-        let stark = House(name: "Stark", sigil: starkSigil, words: "Winter is coming!")
+        let stark = Repository.local.houses[0]
         XCTAssertNotNil(stark)
     }
     
     func testSigilExistence() {
-        let starkSigil = Sigil(image: #imageLiteral(resourceName: "codeIsComing.png"), description: "Direwolf")
+        let starkSigil = Repository.local.sigils[0]
         XCTAssertNotNil(starkSigil)
         
-        let lannysterSigil = Sigil(image: #imageLiteral(resourceName: "lannister.jpg") , description: "Rampant Lion")
+        let lannysterSigil = Repository.local.sigils[1]
         XCTAssertNotNil(lannysterSigil)
     }
     
-    func testAddPerson() {
+    func testAddPersons(){
         XCTAssertEqual(starkHouse.count, 0)
-        starkHouse.add(person: roob)
+        starkHouse.add(person: robb)
         
         XCTAssertEqual(starkHouse.count, 1)
         starkHouse.add(person: arya)
         
         XCTAssertEqual(starkHouse.count, 2)
+        
         starkHouse.add(person: tyrion)
-    
         XCTAssertEqual(starkHouse.count, 2)
+        
     }
     
     func testHouseEquality(){
@@ -82,8 +82,7 @@ class HouseTest: XCTestCase {
         XCTAssertEqual(starkHouse, starkHouse)
         
         // Igualdad
-        let jinxed = House(name: "Stark", sigil: starkSigil, words: "Winter is coming!")
-        
+        let jinxed = House(name: "Stark", sigil: starkSigil, words: "Winter is coming!", url:URL(string:"http://awoiaf.westeros.org/index.php/House_Stark")!)
         XCTAssertEqual(jinxed, starkHouse)
         
         // Desigualdad
@@ -97,7 +96,12 @@ class HouseTest: XCTestCase {
     
     func testHouseComparison(){
         
-        XCTAssertLessThan(starkHouse, lannisterHouse)
+        XCTAssertLessThan(lannisterHouse, starkHouse)
+    }
+    
+    func testGetSingularHouse(){
+        
+        XCTAssertEqual(starkHouse.name, "Stark")
     }
 }
 

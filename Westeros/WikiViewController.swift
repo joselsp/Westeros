@@ -8,28 +8,56 @@
 
 import UIKit
 
-class WikiViewController: UIViewController {
+class WikiViewController: UIViewController{
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
+    @IBOutlet weak var browserView: UIWebView!
+    
+    let model : House
+    
+    init(model: House){
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    func syncViewWithModel(){
+        
+        activityView.isHidden = false
+        activityView.startAnimating()
+        title = model.name
+        browserView.delegate = self
+        browserView.loadRequest(URLRequest(url: model.wikiURL))
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        syncViewWithModel()
+    }
 
+}
+
+extension WikiViewController :  UIWebViewDelegate{
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        
+        activityView.stopAnimating()
+        activityView.isHidden = true
+    }
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        if (navigationType == .linkClicked) ||
+            (navigationType == .formSubmitted) {
+            return false
+        }else{
+            return true
+        }
+    }
 }

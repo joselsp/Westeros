@@ -16,11 +16,12 @@ final class House{
     let	name: String
     let sigil: Sigil
     let words: Words
-    private var _members: Members
+    let wikiURL : URL
+    private var _members : Members
     
-    init(name: String, sigil: Sigil, words: Words) {
+    init(name: String, sigil: Sigil, words: Words, url: URL) {
         
-        (self.name, self.sigil, self.words) = (name, sigil, words)
+        (self.name, self.sigil, self.words, self.wikiURL) = (name, sigil, words, url)
         _members = Members()
     }
     
@@ -46,6 +47,16 @@ extension House{
             return
         }
         _members.insert(person)
+    }
+    // Variadic version
+    func add(persons: Person...){
+        for person in persons{
+            add(person: person)
+        }
+    }
+    // Sorted [Person]
+    func sortedMembers() -> [Person]{
+        return _members.sorted()
     }
 }
 
@@ -76,7 +87,7 @@ extension House: Hashable {
 
 extension House: Comparable {
     static func <(lhs: House, rhs: House) -> Bool {
-        return lhs.proxyForComparable > rhs.proxyForComparable
+        return lhs.proxyForComparable < rhs.proxyForComparable
     }
 }
 
