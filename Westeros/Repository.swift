@@ -93,7 +93,65 @@ extension HouseFactory {
     }
 }
 
-//extension HouseFactory {
-//    func house(filteredBy: )
-//}
+protocol SeasonFactory {
+    
+    typealias FilterSeason = (Season) -> Bool
+    var seasons: [Season] {get}
+    func seasons(filteredBy: FilterSeason) -> [Season]
+}
 
+extension LocalFactory: SeasonFactory {
+    
+    func seasons(filteredBy: FilterSeason) -> [Season] {
+        let filtered = Repository.local.seasons.filter(filteredBy)
+        return filtered
+    }
+    
+    var seasons: [Season] {
+        
+        let seasonOne = Season(name: "Season One", releaseDate: "17-04-2011")
+        let seasonTwo = Season(name: "Season Two", releaseDate: "01-04-2012")
+        let seasonThree = Season(name: "Season Three", releaseDate: "31-03-2013")
+        let seasonFour = Season(name: "Season Four", releaseDate: "06-04-2014")
+        let seasonFive = Season(name: "Season Five", releaseDate: "12-04-2015")
+        let seasonSix = Season(name: "Season Six", releaseDate: "24-04-2016")
+        let seasonSeven = Season(name: "Season Seven", releaseDate: "16-07-2017")
+        
+        let episodeS01E01 = Episode(title: "Winter is Coming", season: seasonOne, airDate: "17-04-2011")
+        let episodeS01E02 = Episode(title: "The Kingsroad", season: seasonOne, airDate: "24-04-2011")
+        
+        seasonOne.add(episodes: episodeS01E01, episodeS01E02)
+
+        let episodeS02E01 = Episode(title: "The North Remembers", season: seasonTwo, airDate: "01-04-2012")
+        let episodeS02E02 = Episode(title: "The Night Lands", season: seasonTwo, airDate: "08-04-2012")
+        
+        seasonTwo.add(episodes: episodeS02E01, episodeS02E02)
+        
+        let episodeS03E01 = Episode(title: "Valar Dohaeris", season: seasonThree, airDate: "31-03-2013")
+        let episodeS03E02 = Episode(title: "Dark Wings, Dark Words", season: seasonThree, airDate: "07-04-2013")
+        
+        seasonThree.add(episodes: episodeS03E01, episodeS03E02)
+        
+        let episodeS0401 = Episode(title: "Two Swords", season: seasonFour, airDate: "06-04-2014")
+        let episodeS0402 = Episode(title: "The Lion and the Rose", season: seasonFour, airDate: "13-04-2014")
+        
+        seasonFour.add(episodes: episodeS0401, episodeS0402)
+        
+        let episodeS0501 = Episode(title: "The Wars to Come", season: seasonFive, airDate: "12-04-2015")
+        let episodeS0502 = Episode(title: "The House of Black and White", season: seasonFive, airDate: "19-04-2015")
+        
+        seasonFive.add(episodes: episodeS0501, episodeS0502)
+        
+        let episodeS06E01 = Episode(title: "The Red Woman", season: seasonSix, airDate: "24-04-2016")
+        let episodeS06E02 = Episode(title: "Home", season: seasonSix, airDate: "01-05-2016")
+        
+        seasonSix.add(episodes: episodeS06E01, episodeS06E02)
+        
+        let episodeS0701 = Episode(title: "Dragonstone", season: seasonSeven, airDate: "16-07-2017")
+        let episodeS0702 = Episode(title: "Stormborn", season: seasonSeven, airDate: "23-07-2017")
+        
+        seasonSeven.add(episodes: episodeS0701, episodeS0702)
+        
+        return [seasonOne, seasonTwo, seasonThree, seasonFour, seasonFive, seasonSix, seasonSeven]
+    }
+}

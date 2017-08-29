@@ -24,12 +24,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Creamos unos modelo
         let houses = Repository.local.houses
+        let seasons = Repository.local.seasons
         
-        // Creamos la tabla
-        let housesVC = HousesViewController(model: houses).wrappedInNavigation()
+        // Creamos los controladores
+        let houseDataSource = DataSources.houseDataSource(model: houses)
+        let housesVC = ArrayTableViewController(dataSource: houseDataSource,
+                                                title: "Westeros",
+                                                style: .plain,
+                                                delegate: HousesDelegate()).wrappedInNavigation()
+        
+        let seasonDataSource = DataSources.seasonDataSource(model: seasons)
+        let seasonsVC = ArrayTableViewController(dataSource: seasonDataSource,
+                                                 title: "Seasons",
+                                                 style: .plain,
+                                                 delegate: SeasonsDelegate()).wrappedInNavigation()
+        
+        let tabVC = UITabBarController()
+        tabVC.viewControllers = [housesVC, seasonsVC]        
         
         // Asignamos el RootVC
-        window?.rootViewController = housesVC
+        window?.rootViewController = tabVC
         
         return true
     }
